@@ -1,5 +1,5 @@
 // Your live tunnel link (replace this every time you start new tunnel)
-const ltLink = "https://abcd123.loca.lt"; // <-- Change this to your current LT link
+const ltLink = "https://tidy-loops-lie.loca.lt"; // <-- Change this to your current LT link
 
 // Optional: Try checking if link is online before redirecting
 fetch(ltLink, { method: "HEAD", mode: "no-cors" })
