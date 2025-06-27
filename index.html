@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <title>Redirecting...</title>
+  <style>
+    html, body { display: none; } /* Prevent visible flash */
+  </style>
   <script>
-    const ltLink = "https://tidy-loops-lie.loca.lt"; // Change this as needed
+    const ltLink = "https://tidy-loops-lie.loca.lt"; // Your LT/ngrok link
 
-    // Try to redirect immediately
+    // Try redirecting before anything loads visually
     fetch(ltLink, { method: "HEAD", mode: "no-cors" })
       .then(() => {
-        window.location.replace(ltLink); // Faster and cleaner than href
+        window.location.replace(ltLink);
       })
       .catch(() => {
         document.addEventListener("DOMContentLoaded", () => {
+          // Unhide body only if redirection failed
+          document.body.style.display = "block";
+          document.documentElement.style.display = "block";
           document.getElementById("manualLink").href = ltLink;
           alert("Server seems offline. Click the link manually if needed.");
         });
@@ -20,6 +26,6 @@
   </script>
 </head>
 <body>
-  <p>Redirecting you to the app... If nothing happens, <a id="manualLink" href="#">click here</a>.</p>
+  <p>Redirecting... If nothing happens, <a id="manualLink" href="#">click here</a>.</p>
 </body>
 </html>
