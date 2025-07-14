@@ -81,8 +81,14 @@ function tryRedirect(force = false) {
     });
 }
 
-retryBtn.addEventListener('click', () => tryRedirect(true));
-manualLink.addEventListener('click', () => window.location.href = ltLink);
+manualLink.addEventListener('click', (e) => {
+  e.preventDefault();
+  fetch(ltLink, { method: 'HEAD', mode: 'no-cors' })
+    .then(() => window.location.href = ltLink)
+    .catch(() => {
+      alert('Server is still unreachable. Please try again later.');
+    });
+});
 
 // Initial state: show loading, hide fallback
 loadingAnim.style.display = '';
