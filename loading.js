@@ -13,6 +13,26 @@ const FAIL_CACHE_MS = 10000; // 10 seconds
 const RETRY_DEBOUNCE = 12000; // 12 seconds
 let retryCountdownInterval = null;
 
+// --- Inactivity reload logic start ---
+let inactivityTimeout;
+const INACTIVITY_LIMIT_MS = 20000; // 20 seconds
+
+function resetInactivityTimer() {
+  clearTimeout(inactivityTimeout);
+  inactivityTimeout = setTimeout(() => {
+    tryRedirect(true); // Force retry after inactivity
+  }, INACTIVITY_LIMIT_MS);
+}
+
+// Reset timer on any user interaction
+['mousemove', 'keydown', 'mousedown', 'touchstart'].forEach(event => {
+  window.addEventListener(event, resetInactivityTimer, true);
+});
+
+// Start the inactivity timer on load
+resetInactivityTimer();
+// --- Inactivity reload logic end ---
+
 function setRetryButtonDisabled(disabled, secondsLeft = 0) {
   retryBtn.disabled = disabled;
   if (disabled && secondsLeft > 0) {
