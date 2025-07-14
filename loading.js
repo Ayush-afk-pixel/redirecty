@@ -90,6 +90,8 @@ manualLink.addEventListener('click', (e) => {
     });
 });
 
+retryBtn.addEventListener('click', () => tryRedirect(true));
+
 // Initial state: show loading, hide fallback
 loadingAnim.style.display = '';
 fallbackCard.style.display = 'none';
