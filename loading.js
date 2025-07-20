@@ -1,4 +1,4 @@
-const ltLink = "http://192.168.29.157:3000";
+const ltLink = "https://dry-parrots-worry.loca.lt";
 const fallback = document.getElementById('fallback');
 const manualLink = document.getElementById('manualLink');
 const retryBtn = document.getElementById('retryBtn');
