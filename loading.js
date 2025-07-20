@@ -1,4 +1,4 @@
-const ltLink = "https://dry-parrots-worry.loca.lt";
+const ltLink = "http://localhost:3000";
 const fallback = document.getElementById('fallback');
 const manualLink = document.getElementById('manualLink');
 const retryBtn = document.getElementById('retryBtn');
